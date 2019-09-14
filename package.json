@@ -1,0 +1,38 @@
+{
+    "name": "ui-utilities",
+    "version": "1.0.0",
+    "description": "JavaScript utilities for implementing common web user interfaces",
+    "main": "dist/scripts/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:tplassman/utility-scripts.git"
+    },
+    "author": {
+        "name": "Trevor Plassman",
+        "url": "https://www.plassmans.com/trevor"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.4.5",
+        "@babel/preset-env": "^7.4.5",
+        "@babel/register": "^7.4.4",
+        "acorn": "^6.1.1",
+        "babelify": "^10.0.0",
+        "browserify": "^16.2.3",
+        "envify": "^4.1.0",
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-import": "^2.17.3",
+        "gulp": "^4.0.2",
+        "gulp-eslint": "^5.0.0",
+        "gulp-livereload": "^4.0.1",
+        "gulp-uglify": "^3.0.2",
+        "vinyl-buffer": "^1.0.1",
+        "vinyl-source-stream": "^2.0.0",
+        "watchify": "^3.11.1"
+    },
+    "dependencies": {}
+}
