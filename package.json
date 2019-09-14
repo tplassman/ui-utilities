@@ -2,8 +2,9 @@
     "name": "ui-utilities",
     "version": "1.0.2",
     "description": "JavaScript utilities for implementing common web user interfaces",
-    "main": "src/index.js",
+    "main": "index.js",
     "scripts": {
+        "build": "npx babel src/index.js --out-file index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -14,5 +15,10 @@
         "name": "Trevor Plassman",
         "url": "https://www.plassmans.com/trevor"
     },
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/cli": "^7.6.0",
+        "@babel/core": "^7.6.0",
+        "@babel/preset-env": "^7.6.0"
+    }
 }
