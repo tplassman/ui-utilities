@@ -1,6 +1,6 @@
 {
     "name": "ui-utilities",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "JavaScript utilities for implementing common web user interfaces",
     "main": "dist/index.js",
     "scripts": {
