@@ -7,7 +7,7 @@ import * as scroll from './scroll';
 import * as spy from './spy';
 import * as text from './text';
 
-exports = {
+export {
     balance,
     events,
     forms,
