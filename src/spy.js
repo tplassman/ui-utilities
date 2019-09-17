@@ -5,7 +5,7 @@ import throttle from './debouncer';
  * @param {string} sectionHandle
  * @param {string} inViewClass
  */
-export function spySections(sectionHandle = '.spy', inViewClass = 'in-view') {
+export function sections(sectionHandle = '.spy', inViewClass = 'in-view') {
     const sections = document.querySelectorAll(sectionHandle);
 
     // Event handler functions
@@ -43,7 +43,7 @@ export function spySections(sectionHandle = '.spy', inViewClass = 'in-view') {
  * |_@param {function} cb
  *   |_@param {node} activeAnchor
  */
-export function spyAnchors({
+export function anchors({
     links = [],
     sections = [],
     activeClass = 'is-active',
@@ -84,7 +84,7 @@ export function spyAnchors({
  * |_@param {function} cb
  *   |_@param {bool} fixed
  */
-export function spyNav({
+export function nav({
     el,
     fixedClass = 'is-fixed',
     threshold = 1,
@@ -129,7 +129,7 @@ export function spyNav({
     fixObserver.observe(el);
 }
 
-export function spyImages() {
+export function images() {
     const images = document.querySelectorAll('[loading="lazy"]');
 
     function handleObserver(entries, observer) {

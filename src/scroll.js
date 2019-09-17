@@ -57,7 +57,7 @@ function setTimer() {
  * @param {function} cb
  * @return {void}
  */
-export function scrollTo(anchor, offset = 0, cb = null) {
+export function to(anchor, offset = 0, cb = null) {
     // Get element to scroll
     const el = document.getElementById(anchor);
     // Get position of element
@@ -82,7 +82,7 @@ export function scrollTo(anchor, offset = 0, cb = null) {
  * @param {function} cb
  * @return {void}
  */
-export function scrollTop(el = document.body, offset = 0, cb = null, fast = false) {
+export function top(el = document.body, offset = 0, cb = null, fast = false) {
     // Get top position of element
     const top = (el.getBoundingClientRect().top + window.pageYOffset) - offset;
 
@@ -98,7 +98,7 @@ export function scrollTop(el = document.body, offset = 0, cb = null, fast = fals
  * @param {function} cb
  * @return {void}
  */
-export function scrollBottom(el = document.body, offset = 0, cb = null) {
+export function bottom(el = document.body, offset = 0, cb = null) {
     // Get bottom position of element
     const bottom = (el.getBoundingClientRect().top + el.offsetHeight + window.pageYOffset) - offset;
 
