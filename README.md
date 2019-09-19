@@ -69,7 +69,7 @@ const dates = document.querySelectorAll('[type="date"]');
 
 // Sync paired dates together as start and end
 if (dates.length === 2) {
-    syncDates(...dates);
+    forms.syncDates(...dates);
 }
 ```
 
