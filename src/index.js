@@ -1,4 +1,3 @@
-import balance from './balance';
 import * as events from './custom-events';
 import throttle from './debouncer';
 import * as forms from './forms';
@@ -8,7 +7,6 @@ import * as spy from './spy';
 import * as text from './text';
 
 export {
-    balance,
     events,
     forms,
     router,

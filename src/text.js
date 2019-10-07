@@ -1,30 +1,57 @@
-const TAGS = 'h1,h2,h3,h4,h5,h6,p,strong,b,em,li,a,span,td';
-const CHILD_TAGS = 'br,img,em';
+/**
+ * Function balance
+ * @param {Element} container - DOM Element to search inside for elements to balance
+ * @param {selector} balanceHandle - CSS selector applied to elements to be balanced
+ *
+ * This function will balance lines of text such that lines
+ * stacked on top of each other will be of similar length.
+ *
+ * This prevents widow words on new lines inside of a responsive
+ * design where content is dynamic and subject to change.
+ *
+ * A default step size tolerance of 10px can be overridden by
+ * supplying a data attribute to the element to be balanced.
+ */
+/* eslint-disable import/prefer-default-export */
+export function balance(container = document, balanceHandle = '.balance') {
+    const els = container.querySelectorAll(balanceHandle);
 
-function replace(from, to) {
-    document.querySelectorAll(TAGS).forEach(el => {
-        const childCheck = el.childNodes.length === 1
-            && CHILD_TAGS.includes(el.childNodes[0].nodeName.toLowerCase());
+    Array.from(els).forEach(el => {
+        // Don't rebalance lines
+        if (el.getAttribute('data-balanced')) return;
 
-        if (el.childNodes.length === 0 || childCheck) {
-            el.innerHTML = el.innerHTML.split(from).join(to);
+        // Allow for overriding default step size per element
+        const stepSize = el.getAttribute('data-step-size') || 10;
+
+        // Set element to default width
+        el.style.maxWidth = 'inherit';
+
+        // Capture initial height and width
+        const height = el.offsetHeight;
+        const width = el.offsetWidth;
+
+        // Bug fix for trying to balance display none elements
+        if (height === 0) {
+            return;
         }
+
+        // Set initial height and width to monitor during shrinking
+        let nextHeight = height;
+        let nextWidth = width;
+
+        // Shrink until height changes
+        while (nextHeight === height) {
+            nextWidth -= stepSize;
+
+            el.style.maxWidth = `${nextWidth}px`;
+            nextHeight = el.offsetHeight;
+        }
+
+        // Add back previous step and set max width to remove widow caused by shrinking
+        el.style.maxWidth = `${nextWidth + (stepSize * 3)}px`;
+
+        // Mark as balanced
+        el.setAttribute('data-balanced', true);
     });
 }
-
-/*
- * Superscript all registered trademarks
- * @return {void}
- */
-export function superscript() {
-    replace('®', '<sup>&reg;</sup>');
-}
-
-/*
- * Remove all newline characters that are not stripped by server
- * https://stackoverflow.com/questions/41555397/strange-symbol-shows-up-on-website-l-sep/45822037
- * @return {void}
- */
-export function newlines() {
-    replace('&#8232;', ' ');
-}
+/* eslint-enable import/prefer-default-export */

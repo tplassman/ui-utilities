@@ -19,8 +19,8 @@ const handleResize = throttle(() => {
     // Do something expensive on resize throttled to every 300ms
 }, 300); // Only fire this event every 300ms
 function handleDOMConentLoaded() {
-    // Superscript all registered trademarks from dynamically generated content
-    text.superscript();
+    // Balance all lines of text in headings
+    text.balance();
 }
 function handleClick(e) {
     // Use smooth scroll instead of default functionality for anchor link
@@ -39,16 +39,6 @@ anchorLinks.forEach(l => {
 ```
 
 ## Functions
-
-### Balance
-
-This function will balance lines of text such that lines stacked on top of each other will be of similar length. This prevents widow words on new lines inside of a responsive design where content is dynamic and subject to change. A default step size tolerance of 10px can be overridden by supplying a data attribute to the element to be balanced.
-
-```javascript
-import { balance } from 'ui-utilities';
-
-balance(document, '.heading-class');
-```
 
 ### Events - Emit
 
@@ -137,9 +127,15 @@ heroButton.addEventListener('click', handleClick);
 
 TODO
 
-### Text - Newlines, Superscript
+### Text - Balance
 
-TODO
+This function will balance lines of text such that lines stacked on top of each other will be of similar length. This prevents widow words on new lines inside of a responsive design where content is dynamic and subject to change. A default step size tolerance of 10px can be overridden by supplying a data attribute to the element to be balanced.
+
+```javascript
+import { text } from 'ui-utilities';
+
+text.balance(document, '.heading-class');
+```
 
 ### Throttle
 
