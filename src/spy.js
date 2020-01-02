@@ -34,7 +34,7 @@ export function sections(sectionHandle = '.spy', inViewClass = 'in-view') {
 }
 
 /**
- * Spy section and set correspond link to active
+ * Spy sections and set correspond link to active
  * @param {object}
  * |_@param {nodeList} links
  * |_@param {nodeList} section
@@ -45,13 +45,16 @@ export function sections(sectionHandle = '.spy', inViewClass = 'in-view') {
  */
 export function anchors({
     links = [],
-    sections = [],
     activeClass = 'is-active',
     threshold = window.innerHeight / 2,
     scrollContainer = window,
     cb = null,
 }) {
-    if (!sections) return;
+    const sections = Array.from(links).map(l => (
+        document.getElementById(l.href.split('#')[1])
+    ));
+
+    if (sections.length === 0) return;
 
     function handleScroll() {
         Array.from(sections).forEach((section, i) => {

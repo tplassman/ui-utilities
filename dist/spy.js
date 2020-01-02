@@ -45,7 +45,7 @@ function sections() {
   });
 }
 /**
- * Spy section and set correspond link to active
+ * Spy sections and set correspond link to active
  * @param {object}
  * |_@param {nodeList} links
  * |_@param {nodeList} section
@@ -59,8 +59,6 @@ function sections() {
 function anchors(_ref) {
   var _ref$links = _ref.links,
       links = _ref$links === void 0 ? [] : _ref$links,
-      _ref$sections = _ref.sections,
-      sections = _ref$sections === void 0 ? [] : _ref$sections,
       _ref$activeClass = _ref.activeClass,
       activeClass = _ref$activeClass === void 0 ? 'is-active' : _ref$activeClass,
       _ref$threshold = _ref.threshold,
@@ -69,7 +67,10 @@ function anchors(_ref) {
       scrollContainer = _ref$scrollContainer === void 0 ? window : _ref$scrollContainer,
       _ref$cb = _ref.cb,
       cb = _ref$cb === void 0 ? null : _ref$cb;
-  if (!sections) return;
+  var sections = Array.from(links).map(function (l) {
+    return document.getElementById(l.href.split('#')[1]);
+  });
+  if (sections.length === 0) return;
 
   function handleScroll() {
     Array.from(sections).forEach(function (section, i) {
