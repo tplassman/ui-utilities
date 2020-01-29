@@ -16,10 +16,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
  * Spy sections and add class when in view
  * @param {string} sectionHandle
  * @param {string} inViewClass
+ * @param {float} threshold - Number between 0 and 1 to activate inViewClass
  */
 function sections() {
   var sectionHandle = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.spy';
   var inViewClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'in-view';
+  var threshold = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0.5;
   var sections = document.querySelectorAll(sectionHandle); // Event handler functions
 
   function handleScroll(entries, observer) {
@@ -28,7 +30,7 @@ function sections() {
     }
 
     Array.from(entries).filter(function (entry) {
-      return entry.target.classList.contains(inViewClass) || entry.intersectionRatio > (entry.target.getAttribute('data-threshold') || 0.5);
+      return entry.target.classList.contains(inViewClass) || entry.intersectionRatio > (entry.target.getAttribute('data-threshold') || threshold);
     }).forEach(function (entry) {
       entry.target.classList.add(inViewClass);
       observer.unobserve(entry.target);

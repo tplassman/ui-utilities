@@ -4,8 +4,9 @@ import throttle from './debouncer';
  * Spy sections and add class when in view
  * @param {string} sectionHandle
  * @param {string} inViewClass
+ * @param {float} threshold - Number between 0 and 1 to activate inViewClass
  */
-export function sections(sectionHandle = '.spy', inViewClass = 'in-view') {
+export function sections(sectionHandle = '.spy', inViewClass = 'in-view', threshold = 0.5) {
     const sections = document.querySelectorAll(sectionHandle);
 
     // Event handler functions
@@ -17,7 +18,7 @@ export function sections(sectionHandle = '.spy', inViewClass = 'in-view') {
         Array.from(entries)
             .filter(entry => (
                 entry.target.classList.contains(inViewClass)
-                || entry.intersectionRatio > (entry.target.getAttribute('data-threshold') || 0.5)
+                || entry.intersectionRatio > (entry.target.getAttribute('data-threshold') || threshold)
             ))
             .forEach(entry => {
                 entry.target.classList.add(inViewClass);
