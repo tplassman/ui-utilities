@@ -109,7 +109,8 @@ function nav(_ref2) {
       fixedClass = _ref2$fixedClass === void 0 ? 'is-fixed' : _ref2$fixedClass,
       _ref2$threshold = _ref2.threshold,
       threshold = _ref2$threshold === void 0 ? 1 : _ref2$threshold,
-      cb = _ref2.cb;
+      _ref2$cb = _ref2.cb,
+      cb = _ref2$cb === void 0 ? null : _ref2$cb;
   var delta = 5; // State variables
 
   var enabled = false;
@@ -128,14 +129,20 @@ function nav(_ref2) {
       return;
     }
 
-    cb(thisY > lastY);
+    if (cb !== null) {
+      cb(thisY > lastY);
+    }
+
     lastY = thisY;
   }, 250);
 
   function handleFixObserver(entries) {
     // Toggle enabled state variable to conditionally process header peek on scroll up
     enabled = el.classList.toggle(fixedClass, entries[0].boundingClientRect.top < 0);
-    cb(enabled);
+
+    if (cb !== null) {
+      cb(enabled);
+    }
   } // Add event listeners
 
 

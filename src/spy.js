@@ -92,7 +92,7 @@ export function nav({
     el,
     fixedClass = 'is-fixed',
     threshold = 1,
-    cb,
+    cb = null,
 }) {
     const delta = 5;
 
@@ -116,7 +116,9 @@ export function nav({
             return;
         }
 
-        cb(thisY > lastY);
+        if (cb !== null) {
+            cb(thisY > lastY);
+        }
 
         lastY = thisY;
     }, 250);
@@ -124,7 +126,9 @@ export function nav({
         // Toggle enabled state variable to conditionally process header peek on scroll up
         enabled = el.classList.toggle(fixedClass, entries[0].boundingClientRect.top < 0);
 
-        cb(enabled);
+        if (cb !== null) {
+            cb(enabled);
+        }
     }
 
     // Add event listeners
